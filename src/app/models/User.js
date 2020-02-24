@@ -49,7 +49,7 @@ class User extends Model {
   // com o campo "id" da tabela files
   static associate(models) {
     // belongsTo > pertence a...
-    this.belongsTo(models.File, { foreignKey: 'avatar_id' });
+    this.belongsTo(models.File, { foreignKey: 'avatar_id', as: 'avatar' });
   }
 
   // Método para verificar a senha
