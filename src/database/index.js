@@ -9,12 +9,13 @@ import Sequelize from 'sequelize';
 // Importa os Models da API
 import User from '../app/models/User';
 import File from '../app/models/File';
+import Appointment from '../app/models/Appointment';
 
 // Importa as configurações de conexão com o BD
 import databaseConfig from '../config/database';
 
 // Inclusão de todos os models dentro um ARRAY
-const models = [User, File];
+const models = [User, File, Appointment];
 
 class Database {
   constructor() {
