@@ -67,6 +67,15 @@ class AppointmentController {
     }
 
     /**
+     * Check is provider_id e req.userId
+     */
+    if (provider_id === req.userId) {
+      res
+        .status(400)
+        .json({ error: 'You cannot create appointments for yourself' });
+    }
+
+    /**
      * parseISO tranforma a string informada em um objeto date
      * startOfHour função pega apenas o início da hora
      */
