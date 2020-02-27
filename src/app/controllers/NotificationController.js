@@ -25,6 +25,23 @@ class NotificationController {
 
     return res.json(notifications);
   }
+
+  async update(req, res) {
+    /**
+     * Método findByIdAndUpdated
+     * localiza o registro pelo Id e atualiza ao mesmo tempo
+     * 1º parametro é o ID
+     * 2º parametro quais campos serao alterados
+     * 3º parametro para retornar o novo registro com as alterações
+     */
+    const notification = await Notification.findByIdAndUpdate(
+      req.params.id,
+      { read: true },
+      { new: true }
+    );
+
+    return res.json(notification);
+  }
 }
 
 export default new NotificationController();
