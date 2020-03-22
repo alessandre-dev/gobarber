@@ -7,6 +7,7 @@
 // Importação do Model do sequelize
 // Importação do Sequelize para conseguir definir os tipos de campos
 import Sequelize, { Model } from 'sequelize';
+import { isBefore, subHours } from 'date-fns';
 
 // Classe File será uma extensão da classe pai Model
 class Appointment extends Model {
@@ -17,6 +18,18 @@ class Appointment extends Model {
       {
         date: Sequelize.DATE,
         canceled_at: Sequelize.DATE,
+        past: {
+          type: Sequelize.VIRTUAL,
+          get() {
+            return isBefore(this.date, new Date());
+          },
+        },
+        cancelable: {
+          type: Sequelize.VIRTUAL,
+          get() {
+            return isBefore(new Date(), subHours(this.date, 2));
+          },
+        },
       },
       {
         // 2º parâmetro do método (objeto sequelize)
